@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="UI/assets/css/landing.css">
+<div id="video-detail">
+    <div>
+      <iframe id="video-playback" width="420" height="315" src=""></iframe>
+    </div>
+    <hr></hr>
+    <b>Views: <span class="view_count" id="view_count"></span></b>
+    <div class="title" id="title"></div>
+    <div class="description" id="description"></div>
+    <div id="thumbnails"></div>
+
+</div>
+
+<center>
+  <img src = "UI/assets/images/loading.gif" id="loader" width="100px" height="100px" />
+</center>
+
+<script type="text/javascript">
+  document.getElementById('video-playback').src = "https://www.youtube.com/embed/"+localStorage.getItem('last-play-id')
+  
+  const Http = new XMLHttpRequest()
+  const url='index.php?api_name=getYoutubeVideoDetails&control_type=youtube&id='+localStorage.getItem('last-play-id')
+  Http.open("GET", url)
+  Http.send()
+
+  Http.onreadystatechange = (e) => {
+    try {
+      x = JSON.parse(Http.responseText)
+      data = JSON.parse(x.data)
+      document.getElementById('title').innerHTML = data['title']
+      document.getElementById('description').innerHTML = data['label'] + " " + data['description']
+      thumbnails = JSON.parse(data['thumbnails'])
+      image_content = []
+      for(i=0;i<thumbnails.length;i++) {
+        image_content.push('<img src="'+thumbnails[i]['url']+'" width="'+thumbnails[i]['width']+'" height = "'+thumbnails[i]['height']+'"/>')
+      }
+      document.getElementById('thumbnails').innerHTML = image_content.join(' ')
+      document.getElementById('view_count').innerHTML = data['view_count']
+      document.getElementById('loader').style.display='none'
+
+    } catch(err) {
+
+    }
+  }
+</script>

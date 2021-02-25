@@ -1,0 +1,49 @@
+.video-box{
+	width:800px;
+	height:150px;
+	margin:10px;
+	padding:10px;
+	display:flex;
+  border-bottom: 1px dotted black;
+}
+.image-box{
+	width:150px;
+	height:150px;
+	display: inline-flex;
+}
+.title{
+	margin-left: 10px;
+    font-size: 15px;
+    word-break: break-word;
+    font-weight: bold;
+    font-size:15px;
+}
+.description{
+	margin-left: 10px;
+    font-size: 15px;
+    word-break: break-word;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 800px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+.btn{
+    background: green;
+    width: 100px;
+    height: 30px;
+    color: white;
+    font-size: 15px;
+    border: none;
+}
